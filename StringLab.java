@@ -1,4 +1,7 @@
+import java.util.Scanner;
+
 public class StringLab {
+    
     public static void main(String[] args){
         /// Task 1: Working with String Methods
         String Com = " Welcome to the Java String Lab! ";
@@ -69,7 +72,68 @@ public class StringLab {
 
         /// Task 2: Loop Challenges with Strings
 
+        // For Loop
+        int vowelCount = 0;
+        String lowerCom = Com.toLowerCase();
+        for (int i = 0; i < lowerCom.length(); i++) {
+            char ch = lowerCom.charAt(i);
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                vowelCount++;
+            }
+        }
+        System.out.println("Vowel Count in original string: " + vowelCount);
+        
+        /// While Loop
+        String palindromeCandidate = "racecar";
+        int left = 0;
+        int right = palindromeCandidate.length() - 1;
+        boolean isPalindrome = true;
+        while (left < right) {
+            if (palindromeCandidate.charAt(left) != palindromeCandidate.charAt(right)) {
+                isPalindrome = false;
+                break;
+            }
+            left++;
+            right--;
+        }
+        System.out.println("Is \"" + palindromeCandidate + "\" a palindrome? " + isPalindrome);
+        
 
+        // Do...While Loop
+        Scanner scanner = new Scanner(System.in);
+        String userInput;
+        do {
+            System.out.print("Enter a sentence containing the word 'Java': ");
+            userInput = scanner.nextLine();
+        } while (!userInput.contains("Java"));
+        System.out.println("Thank you!");
 
+        System.out.println("\n------------------------------------------\n");
+
+        // ==========================================
+        // Task 3: Working with StringBuilder
+        // ==========================================
+        StringBuilder sb = new StringBuilder("StringBuilder Lab");
+        sb.append(" - Learning Java");
+        // "StringBuilder Lab - Learning Java" -> "Lab" ends at index 18
+        sb.insert(sb.indexOf("Lab") + 3, " is fun");
+        // "StringBuilder Lab is fun - Learning Java"
+        int learnIndex = sb.indexOf("Learning");
+        sb.delete(learnIndex, learnIndex + "Learning".length() + 1); // delete "Learning "
+        sb.reverse();
+        System.out.println("Task 3 (StringBuilder reversed): " + sb.toString());
+
+        // ==========================================
+        // Task 4: Working with StringBuffer
+        // ==========================================
+        StringBuffer sBuffer = new StringBuffer("Multithreading Lab");
+        sBuffer.append(" - Learning Java");
+        sBuffer.insert(sBuffer.indexOf("Lab") + 3, " is fun");
+        int sfLearnIndex = sBuffer.indexOf("Learning");
+        sBuffer.delete(sfLearnIndex, sfLearnIndex + "Learning".length() + 1);
+        sBuffer.reverse();
+        System.out.println("Task 4 (StringBuffer reversed): " + sBuffer.toString());
+        
+        scanner.close();
     }
 }
